@@ -1,0 +1,19 @@
+    Color[] fgPixels = {new Color(64, 124, 224), new Color(64, 124, 224), new Color(64, 124, 224)};
+    Image fgImage1 = new Image (10, 10, fgPixels);
+    Image overlay1 = ImageLib.overlay(fgImage1, exampleImage, 1, 0);
+    Color[] overlay1PixelsExpected = {new Color(255, 0 ,0)};
+    System.out.println("overlay1 image:   " + overlay1.toString());
+    System.out.println("overlay1 image expect:	Image[width=3, height=3]");
+    System.out.println("overlay1 pixels:	" + Arrays.toString(overlay1.getPixels()));
+    System.out.println("overlay1 pixels expect:   " + Arrays.toString(overlay1PixelsExpected));
+
+    Image fgImage2 = new Image (1, 3, fgPixels);
+    Image overlay2 = ImageLib.overlay(fgImage1, exampleImage, 2, 0);
+    Color[] overlay2PixelsExpected = {new Color(255, 0 ,0)};
+    System.out.println("overlay2 image:   " + overlay2.toString());
+    System.out.println("overlay2 image expect:	Image[width=3, height=3]");
+    System.out.println("overlay2 pixels:	" + Arrays.toString(overlay2.getPixels()));
+    System.out.println("overlay2 pixels expect:   " + Arrays.toString(overlay2PixelsExpected));
+
+    Image overlaycrane = ImageLib.overlay(fgImage1, crane, 2, 2);
+    CSE8ALib.explore(overlaycrane);
