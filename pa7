@@ -17,3 +17,30 @@
 
     Image overlaycrane = ImageLib.overlay(fgImage1, crane, 2, 2);
     CSE8ALib.explore(overlaycrane);
+
+
+public static Color[] framePixels(int width, int height, Image original, int thickness, Color color){
+  int imageWidth = original.getWidth();
+  int imageHeight = original.getHeight();
+
+  int size = width*height;
+
+  Color[] newArray = new Color[size];
+  for(int col=0 ; col <width; col+=1){
+	for(int row=0; row < height; row+=1){
+  	if( col>= thickness && col < thickness+ imageWidth && row>=thickness && row < thickness + imageHeight  ){
+    	newArray[row*width+col] = original.getPixels()[(row-thickness)*imageWidth + (col-thickness)];
+  	}
+  	else {
+    	newArray[row*width + col] = color;
+  	}
+	}
+  }
+  return newArray;
+  }
+  public static Image frame(Image original, int thickness, Color color){
+	int width = 2*thickness+original.getWidth();
+	int height = 2*thickness+original.getHeight();
+	Color[] pixels = ImageLib.framePixels(width, height, original, thickness, color  );
+	return new Image(width, height, pixels);
+  }
